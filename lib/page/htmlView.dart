@@ -18,7 +18,7 @@ class _WebViewPageState extends State<WebViewPage> {
         ),
         child: SafeArea(
           child: WebView(
-            initialUrl: "http://www.baidu.com",
+            initialUrl: "https://edu.163.com/20/0331/12/F923NNFI0029985J.html",
             //JS执行模式 是否允许JS执行
             javascriptMode: JavascriptMode.unrestricted,
             onWebViewCreated: (controller) {

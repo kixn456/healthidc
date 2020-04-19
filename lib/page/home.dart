@@ -34,6 +34,7 @@ class HomeState extends State<Home> {
    */
   void _changeType(int index) {
     print(index);
+    this._index = index;
     this.pageViewControl(index);
   }
 
@@ -43,21 +44,20 @@ class HomeState extends State<Home> {
   List<Widget> createType() {
     List<Widget> typeList = new List();
     const listType = ['病务', '处方', '检查', '检验', '病理'];
-    Color currentBg=Colors.white;
-    Color fontColor=Colors.blueAccent;
+
     for (var i = 0; i < listType.length; i++) {
       int index = i;
-      if(i==0)
-      {
-        currentBg=Colors.blueAccent;
-        fontColor=Colors.white;
+      Color currentBg = Colors.transparent;
+      Color fontColor = Colors.blueAccent;
+      if (this._index == i) {
+        currentBg = Colors.blueAccent;
+        fontColor = Colors.white;
       }
 
       Widget item = Container(
           margin: EdgeInsets.only(left: 5, right: 5),
           decoration: BoxDecoration(
-              color: currentBg, 
-              borderRadius: BorderRadius.circular(5)),
+              color: currentBg, borderRadius: BorderRadius.circular(5)),
           child: GestureDetector(
               onTap: () {
                 this._changeType(index);
@@ -79,13 +79,14 @@ class HomeState extends State<Home> {
    */
   pageViewControl(index) {
     _index = index;
-    timer = Timer.periodic(const Duration(seconds: 2), (_timer) {
-      _pageController.animateToPage(
-        _index, //跳转到的位置
-        duration: Duration(milliseconds: 50), //跳转的间隔时间
-        curve: Curves.fastLinearToSlowEaseIn, //跳转动画
-      );
-    });
+
+    // timer = Timer.periodic(const Duration(seconds: 2), (_timer) {
+    //   _pageController.animateToPage(
+    //     _index, //跳转到的位置
+    //     duration: Duration(milliseconds: 50), //跳转的间隔时间
+    //     curve: Curves.fastLinearToSlowEaseIn, //跳转动画
+    //   );
+    // });
   }
 
   /**
@@ -122,9 +123,7 @@ class HomeState extends State<Home> {
               height: 100,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('asset/images/head.png')
-                      )
-                      ),
+                      image: AssetImage('asset/images/head.png'))),
             ),
             Container(
               child: Text('京诊医院：北京积水潭医院\n就诊时间：2019-11-22\n医师：司马相如\n症状：腹绞痛'),
@@ -145,13 +144,14 @@ class HomeState extends State<Home> {
     return Scaffold(
         backgroundColor: Colors.lightBlue,
         appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
           textTheme: TextTheme(
             headline: TextStyle(fontWeight: FontWeight.bold),
             title: TextStyle(color: Colors.white),
           ),
           title: Text('病历详情'),
           centerTitle: true,
-          elevation: 0,
           leading: Icon(
             Icons.arrow_back_ios,
             color: Colors.white,

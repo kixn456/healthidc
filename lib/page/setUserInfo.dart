@@ -42,6 +42,8 @@ class SetUserPageState extends State<SetUserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+           elevation: 0,
+          backgroundColor:Colors.transparent,
           textTheme: TextTheme(
               headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
               title: TextStyle(color: Colors.white)),
@@ -67,7 +69,7 @@ class SetUserPageState extends State<SetUserPage> {
             Container(
               color:Color.fromRGBO(230, 239, 255,1),
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(top: 200),
+              margin: EdgeInsets.only(top: 160),
               padding: EdgeInsets.only(top: 80, left: 20, right: 20),
               child: ListView(
                 scrollDirection: Axis.vertical,
@@ -100,7 +102,7 @@ class SetUserPageState extends State<SetUserPage> {
             ),
             Container(
               child: Positioned(
-                  top: 50,
+                  top: 0,
                   left: 20,
                   right: 20,
                   child: Container(

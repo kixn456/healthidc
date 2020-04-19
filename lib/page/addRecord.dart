@@ -106,22 +106,27 @@ class AddRecordState extends State<AddRecord> {
     return Scaffold(
       appBar: AppBar(
         elevation:0,
+         //backgroundColor:Colors.transparent,
         centerTitle: true,
-        leading: Icon(Icons.arrow_back_ios,color:Colors.white,),
+        leading: GestureDetector(
+          onTap:(){
+              Navigator.pop(context);
+          },
+          child:Icon(Icons.arrow_back_ios,color:Colors.white,)
+        ),
         title:Text('增加病历',style: TextStyle(color:Colors.white),),
         actions: <Widget>[
             Icon(Icons.favorite,color: Colors.white,),
              Icon(Icons.share,color: Colors.white,),
-        
         ],
       ),
       
         body: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
-          height: 200,
+          height: 240,
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(30),
           decoration: BoxDecoration(

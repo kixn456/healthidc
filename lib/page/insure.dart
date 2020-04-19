@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Insure extends StatefulWidget {
+class InsureHistory extends StatefulWidget {
   String title;
   @override
   InsureState createState() => InsureState();
 }
 
-class InsureState extends State<Insure> {
+class InsureState extends State<InsureHistory> {
   void initState() {
     super.initState();
   }
@@ -67,7 +67,16 @@ class InsureState extends State<Insure> {
     return itemList;
   }
 
-  Widget createTimeItem() {
+  Widget createTimeItem(int index) {
+    List<Color> colorsList = [
+      Colors.redAccent,
+      Colors.blueAccent,
+      Colors.yellowAccent,
+      Colors.deepOrange,
+      Colors.purpleAccent
+    ];
+    Color currentColor=colorsList[index%5];
+
     DateTime timeData=DateTime.now();
     String timeInfo='${timeData.year}-${ timeData.month }-${timeData.day}';
     String weekDay=' 星期${timeData.weekday} 你生病了';
@@ -132,16 +141,17 @@ class InsureState extends State<Insure> {
                   child: Container(
                       padding: EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                          //color: Colors.blueAccent,
-                          gradient: const LinearGradient(
-                            colors: [Colors.lightBlue, Colors.blueAccent]),
+                        color: currentColor,
+                          // gradient: const LinearGradient(
+                          //   colors: [currentColor, Colors.blueAccent]
+                          //   ),
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(10),
                             bottomRight: Radius.circular(10),
                           )),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[Text('${DateTime.now()}')],
+                        children: <Widget>[Text('${DateTime.now()}',style: TextStyle(color:Colors.white),)],
                       ))),
             ]),
           )
@@ -152,9 +162,9 @@ class InsureState extends State<Insure> {
 
   List<Widget> createTimeList() {
     List<Widget> timeList = new List();
-
+ 
     for (var i = 0; i < 10; i++) {
-      Widget item = createTimeItem();
+      Widget item = createTimeItem(i);
       timeList.add(item);
     }
 
@@ -165,13 +175,7 @@ class InsureState extends State<Insure> {
    * 创建子页面
    */
   Widget createPageList() {
-    // const colorsList = [
-    //   Colors.redAccent,
-    //   Colors.blueAccent,
-    //   Colors.yellowAccent,
-    //   Colors.deepOrange,
-    //   Colors.purpleAccent
-    // ];
+   
 
     return Stepper(currentStep: 0, steps: createTimeLine());
 
@@ -182,6 +186,8 @@ class InsureState extends State<Insure> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+           elevation: 0,
+          backgroundColor:Colors.transparent,
           textTheme: TextTheme(
               headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
               title: TextStyle(color: Colors.white)),
@@ -207,7 +213,7 @@ class InsureState extends State<Insure> {
             Container(
               color:Color.fromRGBO(230, 239, 255,1),
               width: MediaQuery.of(context).size.width,
-              margin: EdgeInsets.only(top: 200),
+              margin: EdgeInsets.only(top: 150),
               padding: EdgeInsets.only(top: 80, left: 20, right: 20),
               child: ListView(
                 scrollDirection: Axis.vertical,
@@ -216,7 +222,6 @@ class InsureState extends State<Insure> {
             ),
             Container(
               child: Positioned(
-                  top: 50,
                   left: 20,
                   right: 20,
                   child: Container(
